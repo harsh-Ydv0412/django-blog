@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
+
 
 class Category(models.Model):
   category_name = models.CharField(max_length=50, unique=True)
@@ -33,3 +35,11 @@ class Blog(models.Model):
 
   def __str__(self):
     return self.title
+  
+  # def save(self, *args, **kwargs):
+  #   if not self.slug:
+  #       super().save(*args, **kwargs)
+  #       self.slug = slugify(self.title) + "-" + str(self.id)
+  #       super().save(update_fields=['slug'])
+  #   else:
+  #       super().save(*args, **kwargs)
